@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+package ThreadTask;
+
+import ThreadTask.MyList;
 
 /**
  * Created by Регина on 28.10.2015.

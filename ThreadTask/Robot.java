@@ -1,3 +1,5 @@
+package ThreadTask;
+
 /**
  * Created by Регина on 28.10.2015.
  */
