@@ -13,7 +13,7 @@ public class Task7 {
             @Override
             public void run() {
                 while (true) {
-                    myList.push(10);
+                    myList.push(new MyList<Integer>(10));
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -28,7 +28,7 @@ public class Task7 {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -36,5 +36,22 @@ public class Task7 {
                 }
             }
         }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while (i < 10) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    myList.pull();
+                    i++;
+                }
+            }
+        }).start();
+
     }
 }

@@ -13,11 +13,11 @@ public class MyList<T> {
         this.maxCount = maxCount;
     }
 
-    Object lock = new Object();
+    final Object lock = new Object();
 
     void push(T e) {
         synchronized (lock) {
-            if (list.size() >= maxCount) {
+            while (list.size() >= maxCount) {
                 System.out.println("Waiting");
                 try {
                     lock.wait();
@@ -33,7 +33,7 @@ public class MyList<T> {
 
     T pull() {
         synchronized (lock) {
-            if (list.size() <= 0) {
+            while (list.size() == 0) {
                 System.out.println("Wait object");
                 try {
                     lock.wait();
@@ -41,9 +41,10 @@ public class MyList<T> {
                     e.printStackTrace();
                 }
             }
-            lock.notifyAll();
+            T e = list.remove(list.size() - 1);
             System.out.println("Removed object");
-            return list.remove(list.size() - 1);
+            lock.notify();
+            return e;
         }
     }
 }
