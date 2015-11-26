@@ -1,0 +1,2 @@
+firstPet com.itis.home.pets.Cat
+secondPet com.itis.home.pets.Dog
